@@ -3,6 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const natural = require("natural");
 
+
 dotenv.config({ path: "./.env", override: true });
 
 const app = express();
@@ -195,12 +196,16 @@ If question is outside this knowledge, give a practical short guidance and ask u
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
-  }),
+    origin: "*",
+  })
 );
 
 app.get("/api/health", (req, res) => {
   res.json({ ok: true, message: "Backend is running." });
+});
+
+app.get("/", (req, res) => {
+  res.send("Voice Agent Backend is Running 🚀");
 });
 
 app.post("/api/text-inquiry", async (req, res) => {
